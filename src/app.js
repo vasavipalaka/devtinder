@@ -2,24 +2,30 @@ const express = require("express");
 
 const app = express();
 
-const { adminAuth, userAuth } = require("./middlewares/auth")
-
-//Handle Auth Middleware for all GET,POST, ......requests
-app.use("/admin",adminAuth);
-
-app.use("/user/data",userAuth,(req,res)=>{
-    res.send("User Data sent");
+app.use("/",(err,req,res,next)=>{
+    if(err){
+        //Log your error
+        res.status(500).send("something went wrong")
+    }
 });
 
-app.get("/admin/getAllData",(req,res)=>{
-    //Logic of fetching all data
+app.use("/getUserData",(req,res)=>{
+    //try{
+         // Logic of DB call and get user data
 
-    res.send("All Data Sent");
+         throw new Error("sfsgfbvsf");
+         res.send("User Data sent");
+    // } catch(err){
+      //  res.status(500).send("Some error has occured in support")
+     //}
+   
 });
 
-app.get("/admin/deleteUser",(req,res)=>{
-    //Logic of fetching all data
-    res.send("Deleted a user")
+app.use("/",(err,req,res,next)=>{
+    if(err){
+        //Log your error
+        res.status(500).send("something went wrong")
+    }
 });
 
 
