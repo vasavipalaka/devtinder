@@ -3,14 +3,13 @@ const connectDB = require("./config/database");
 const app = express();
 const User = require("./models/user");
 
+app.use(express.json());
+
 app.post("/signup",async(req,res)=>{
+
+    
     //Creating a new instance of the User model
-    const user = new User({
-        firstName: "Pawan",
-        lastName: "Palaka",
-        emailId: "palakapawan0982@gmail.com",
-        password:"pawan092"
-    });
+    const user = new User(req.body);
      
     try{
         await user.save();// All of the mongoose functions,methods ,apis return promise
